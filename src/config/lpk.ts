@@ -40,6 +40,7 @@ export const mergeLpk = (importLpkFiles: ILpkFile) => {
         }
     }
 }
+
 export type IFnLpk = (key: string, option?: {index?: number; default?: string}) => string
 export const lpk = (key: string, option?: {index?: number, default?: string}) => {
     const value = tblLpk[key]
@@ -50,7 +51,6 @@ export const lpk = (key: string, option?: {index?: number, default?: string}) =>
 
     return value || option?.default || key
 }
-
 
 export const changeLocale = (stLocale: string) => {
     if (!LOCALE_OPTIONS.find(stLocaleItem => stLocaleItem == stLocale)){

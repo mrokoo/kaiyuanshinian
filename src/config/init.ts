@@ -24,4 +24,12 @@ Object.keys(IGlobalVarsKey).map(key => {
 export const initApp = async () => {
     await initLoginUserInfo()
     initLpk()
+
+    // 初始化各类业务模块
+
+    const iAllEntry: GlobalType.IRecord = import.meta.glob('@/bmod/*/entry.ts', {eager: true})
+    for (const path  in iAllEntry){
+        const iEntryFile = iAllEntry[path]
+        iEntryFile && iEntryFile.entryInit && await iEntryFile.entryInit()
+    }
 }
