@@ -1,4 +1,5 @@
 import { IApp } from '@/config/app'
+import { IFnLpk } from './config/lpk'
 import { ITools } from './utils/Tools'
 
 
@@ -11,10 +12,12 @@ declare global {
 
     const app: IApp
     const Tools: ITools
+    const lpk: IFnLpk
 
     interface Window {
         app: IApp,
-        Tools: ITools
+        Tools: ITools,
+        lpk: IFnLpk
     }
 
 }
@@ -23,6 +26,7 @@ declare module 'vue' {
     interface ComponentCustomProperties {
         app: IApp;
         Tools: ITools;
+        lpk: IFnLpk,
     }
 }
 

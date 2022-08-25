@@ -1,4 +1,5 @@
-import { get } from "lodash"
+import { LOCALE_OPTIONS } from "@/utils/Constants"
+import { get, isArray } from "lodash"
 const stLocalStorageName = 'locale'
 
 
@@ -20,13 +21,13 @@ export const getLocale = () => {
 
     return stLanguage
 }
+
+
 type ILpkFile = {
     [path: string]: {
         default: Record<string, string | string[]>
     }
 }
-
-
 export const mergeLpk = (importLpkFiles: ILpkFile) => {
     const stLocaleLanguage = getLocale()
     for (const path in importLpkFiles) {
@@ -39,12 +40,22 @@ export const mergeLpk = (importLpkFiles: ILpkFile) => {
         }
     }
 }
+export type IFnLpk = (key: string, option?: {index?: number; default?: string}) => string
+export const lpk = (key: string, option?: {index?: number, default?: string}) => {
+    const value = tblLpk[key]
 
-export const lpk = () => {
+    if (isArray(value)) {
+        return value[option?.index || 0] || option?.default || key
+    }
 
+    return value || option?.default || key
 }
 
 
-export const changeLocale = () => {
-
+export const changeLocale = (stLocale: string) => {
+    if (!LOCALE_OPTIONS.find(stLocaleItem => stLocaleItem == stLocale)){
+        return
+    }
+    Tools.LocalStorage.setItem(stLocalStorageName, stLocale)
+    document.location.reload()
 }

@@ -20,5 +20,6 @@ import './assets/styles/global.scss'
     const uiApp = createApp(App)
     uiApp.config.globalProperties.app = window.app
     uiApp.config.globalProperties.Tools = window.Tools
+    uiApp.config.globalProperties.lpk = window.lpk
     uiApp.mount('#app')
 })()
