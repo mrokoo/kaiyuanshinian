@@ -22,11 +22,10 @@ Object.keys(IGlobalVarsKey).map(key => {
 
 
 export const initApp = async () => {
-    await initLoginUserInfo()
-    initLpk()
+    await initLoginUserInfo() // 获取当前登入用户信息。（如果用户token存在）
+    initLpk() // 初始化语言包，这里部分逻辑根据登入用户信息设置。
 
     // 初始化各类业务模块
-
     const iAllEntry: GlobalType.IRecord = import.meta.glob('@/bmod/*/entry.ts', {eager: true})
     for (const path  in iAllEntry){
         const iEntryFile = iAllEntry[path]

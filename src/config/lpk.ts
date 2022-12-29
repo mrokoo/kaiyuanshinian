@@ -6,7 +6,7 @@ const stLocalStorageName = 'locale'
 const tblLpk: Record<string, string | string[]> = {}
 
 export const initLpk = () => {
-    mergeLpk(import.meta.glob("@/locales/*", { eager: true }))
+    mergeLpk(import.meta.glob("@/locales/*", { eager: true })) // 将getLocale获取的语言包名字，通过mergeLpk缓存在tblLpk
 }
 
 
